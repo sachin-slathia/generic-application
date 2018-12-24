@@ -4,8 +4,8 @@ import hudson.*
 import hudson.model.*
 
 node('master') {
-    def current_branch = env.BRANCH_NAME.trim()
-    echo $env.BRANCH_NAME.trim()
+    def current_branch = env.BRANCH_NAME
+    echo $env.BRANCH_NAME
     def devOpsBranch = "master"
     def deployableBranch = true
     def forceNotPR = false // set to true during replay to treat this like its not a PR even if it is
