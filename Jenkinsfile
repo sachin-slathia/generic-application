@@ -4,7 +4,6 @@ import hudson.*
 import hudson.model.*
 
 node('master') {
-  ansiColor('xterm') {
     def current_branch = env.BRANCH_NAME.trim()
     echo $env.BRANCH_NAME.trim()
     def devOpsBranch = "master"
@@ -43,5 +42,4 @@ node('master') {
       currentBuild.result = 'FAILURE'
       return
     }
-}
 }
