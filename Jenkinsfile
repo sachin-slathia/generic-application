@@ -44,4 +44,4 @@ node('master') {
       return
     }
 }
-
+}
