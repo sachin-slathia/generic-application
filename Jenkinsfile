@@ -33,6 +33,7 @@ node('master') {
     }
 
     def commitId = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'")
+    echo $commitId
 
     def gitRef = sh(returnStdout: true, script: "git ls-remote --refs   | grep $commitId | grep pull | cut -f 2")
     def isPullRequest = gitRef =~ /(pull)/ && !forceNotPR
