@@ -2,23 +2,24 @@ pipeline {
     agent any
         parameters {
             string(
-                name: 'Path',
+                name: 'Tool',
                 defaultValue:"sbt",
                 description: "which project to create CI|CD ")
     }
     stages {
+       stage('Checkout source code') {
+       steps{      
+        git url: 'https://github.com/slathia15/generic-application'
+    }
+    }   
         stage("build") {
             steps {
                 script {
-                    if ("${params.Path}" == "sbt")
-                     {
-                          print "Abc"  
-                         sh './scripts/sbt.sh'
-                         print "fdsfds"
-                }
-                else{
-                    print "maven project"
-                }
+                    if (fileExists('build.sbt')) {
+                           sh './scripts/sbt.sh'
+                      } else {
+                        echo 'No'
+                          }
                     
                 }
             }
