@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-TEST_ARGS="test it:compile"
-STYLE_ARGS="scalastyle test:scalastyle it:scalastyle"
-SCALARIFORM_ARGS="validateScalariformFormat"
+COMPILE_ARGS="compile"
+TEST_ARGS="test"
+STYLE_ARGS="scalastyle"
 DIST_ARGS="dist"
 
-sbt clean $SCALARIFORM_ARGS $STYLE_ARGS $TEST_ARGS $DIST_ARGS cpd
+sbt clean cleanFiles $COMPILE_ARGS $SCALARIFORM_ARGS $STYLE_ARGS $TEST_ARGS $DIST_ARGS cpd
 
