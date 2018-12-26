@@ -12,7 +12,8 @@ pipeline {
                 script {
                     if ("${params.Path}" == "sbt")
                      {
-                         sh "./scripts/sbt.sh"
+                          print "Abc"  
+                         sh './scripts/sbt.sh'
                          print "fdsfds"
                 }
                 else{
