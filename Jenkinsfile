@@ -6,8 +6,8 @@ pipeline {
        script {
           git_a = sh(returnStdout: true, script: 'source ./scripts/env.sh')
         } 
-        echo "${git_a}"
-        git url: "${git_a}",credentialsId: "${env.CREDENTIAL_ID}"
+        echo "${env.git_a}"
+        git url: "${env.git_a}",credentialsId: "${env.CREDENTIAL_ID}"
     }
     }   
         stage("build") {
