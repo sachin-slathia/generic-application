@@ -37,7 +37,7 @@ pipeline {
           steps{
               echo PATH
               sh 'printenv'
-              git url: "https://github.com/slathia15/generic-application"
+              git url: "https://github.com/slathia15/mavenProject"
               echo env.GIT_UR
                     
           }
