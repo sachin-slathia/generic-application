@@ -37,6 +37,7 @@ pipeline {
           steps{
               echo PATH
               sh 'printenv'
+              git url: "https://github.com/slathia15/generic-application"
               echo env.GIT_UR
                     
           }
