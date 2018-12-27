@@ -27,6 +27,9 @@ pipeline {
                    deployableBranch = false
          }
        }
+     }
+  } 
+       
        stage('Checkout source code') {
           steps{
               echo PATH
