@@ -29,8 +29,9 @@ pipeline {
          }
        
               echo "$devOpsBranch"
+              git branch:"devOpsBranch",url: "https://github.com/slathia15/mavenProject"
      }
-     }
+   }
   } 
        
        stage('Checkout source code') {
