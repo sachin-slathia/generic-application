@@ -26,8 +26,9 @@ pipeline {
                    default:
                    deployableBranch = false
          }
-       }
+       
               echo $devOpsBranch
+     }
      }
   } 
        
