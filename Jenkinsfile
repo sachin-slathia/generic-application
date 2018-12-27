@@ -1,13 +1,13 @@
 pipeline {
     agent any
     environment {
-       PATH = "${env.WORKSPACE}/scripts:$PATH"
+       PATH = "${env.WORKSPACE}:$PATH"
     }
     stages {
        stage('Checkout source code') {
           steps{
               echo PATH
-              sh './env.sh'
+              sh '.script/env.sh'
               echo env.GIT_UR
                     
           }
