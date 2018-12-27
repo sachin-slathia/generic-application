@@ -3,7 +3,7 @@ pipeline {
     stages {
        stage('Checkout source code') {
        steps{    
-        sh './scripts/env.sh'  
+        sh 'source ./scripts/env.sh'  
         echo "${env.GIT_UR}"
         git url: "${env.GIT_UR}",credentialsId: "${env.CREDENTIAL_ID}"
     }
