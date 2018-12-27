@@ -5,12 +5,9 @@ pipeline {
         environment {
         // 'This value is exported to all commands in this stage'
         l = sh 'source ./scripts/env.sh'
-
-        AWESOME_BUILD = "${env.GIT_UR}"
          }
           steps{
-              echo "$AWESOME_BUILD"
-              echo "$l.GIT_UR"
+              echo "$env.GIT_UR"
                     
           }
          
