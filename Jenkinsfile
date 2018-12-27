@@ -15,13 +15,7 @@ pipeline {
           }
          
     }
-    
-          steps{
-              echo "$AWESOME_BUILD"
-                    
-          }
-       
-    }   
+         
         stage("build") {
             steps {
                 script {
@@ -38,3 +32,4 @@ pipeline {
             }
         }
     }
+  }
