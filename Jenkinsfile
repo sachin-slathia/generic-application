@@ -47,11 +47,11 @@ pipeline {
         stage("build") {
             steps {
                 script {
-                dir('CalibrationResults') {
+                dir('Devops') {
                 git url: "https://github.com/slathia15/generic-application-Devops"
     }
                     if (fileExists('build.sbt')) {
-                           sh './scripts/sbt.sh'
+                           sh './Devops/scripts/sbt.sh'
                       } else if(fileExists('pom.xml') && !fileExists('build.sbt')){
                            sh './scripts/mvn.sh'
                           }
