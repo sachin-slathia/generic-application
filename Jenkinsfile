@@ -1,15 +1,10 @@
 pipeline {
     agent any
-        parameters {
-            string(
-                name: 'Tool',
-                defaultValue:"sbt",
-                description: "which project to create CI|CD ")
-    }
     stages {
        stage('Checkout source code') {
-       steps{      
-        git url: 'https://github.com/slathia15/generic-application'
+       steps{    
+        source env.sh  
+        git url: $GIT_URL
     }
     }   
         stage("build") {
