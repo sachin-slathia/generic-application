@@ -24,4 +24,3 @@ public createGlobalEnvironmentVariables(String key, String value){
         envVars.put(key, value)
         instance.save()
 }
-createGlobalEnvironmentVariables('Var1','DummyValue')

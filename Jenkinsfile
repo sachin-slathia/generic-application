@@ -40,7 +40,6 @@ pipeline {
        stage('Checkout source code') {
           steps{
               echo PATH
-              echo env.Var1
               sh 'printenv'
               git url: "https://github.com/slathia15/mavenProject"
               echo env.GIT_UR
