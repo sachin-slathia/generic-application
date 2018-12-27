@@ -3,7 +3,7 @@ pipeline {
     stages {
        stage('Checkout source code') {
           steps{
-              sh 'source ./scripts/env.sh'
+              sh './scripts/env.sh'
               sh 'printenv'
               echo "$env.GIT_UR"
                     
