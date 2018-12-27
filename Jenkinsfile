@@ -10,7 +10,7 @@ pipeline {
          }
           steps{
               echo "$AWESOME_BUILD"
-              echo "$l"
+              echo "$l.GIT_UR"
                     
           }
          
