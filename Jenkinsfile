@@ -42,23 +42,12 @@ pipeline {
               echo PATH
               echo env.Var1
               sh 'printenv'
-              git url: "https://github.com/slathia15/generic-application"
+              git url: "https://github.com/slathia15/mavenProject"
               echo env.GIT_UR
                     
           }
          
-    }
-    stage('call groovy file') {
-          steps{
-            script{
-               def rootDir = pwd()
-                echo rootDir
-               def example = load "${rootDir}/Example.Groovy"
-                example.createGlobalEnvironmentVariables('Var1','DummyValue')
-            }
-          }
-       }
-         
+    }    
         stage("build") {
             steps {
                 script {
@@ -74,5 +63,15 @@ pipeline {
                 }
             }
         }
+        stage('call groovy file') {
+          steps{
+            script{
+               def rootDir = pwd()
+                echo rootDir
+               def example = load "/Devops/groovy/Example.Groovy"
+                example.createGlobalEnvironmentVariables('Var1','DummyValue')
+            }
+          }
+       }  
     }
   }
