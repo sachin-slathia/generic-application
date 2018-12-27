@@ -7,6 +7,7 @@ pipeline {
         l = sh 'source ./scripts/env.sh'
          }
           steps{
+              sh 'printenv'
               echo "$env.GIT_UR"
                     
           }
