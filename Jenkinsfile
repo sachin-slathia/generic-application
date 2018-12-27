@@ -68,7 +68,7 @@ pipeline {
             script{
                def rootDir = pwd()
                 echo rootDir
-               def example = load "/Devops/groovy/Example.Groovy"
+               def example = load "./Devops/groovy/Example.Groovy"
                 example.createGlobalEnvironmentVariables('Var1','DummyValue')
             }
           }
