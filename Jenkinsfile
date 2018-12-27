@@ -3,8 +3,8 @@ pipeline {
     stages {
        stage('Checkout source code') {
        steps{    
-        source env.sh  
-        git url: $GIT_URL
+        sh './scripts/env.sh  
+        git url: ${env.GIT_URL}
     }
     }   
         stage("build") {
