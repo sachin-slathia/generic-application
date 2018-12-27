@@ -31,15 +31,24 @@ pipeline {
               echo "$devOpsBranch"
                dir('Devops') {
                 git url: "https://github.com/slathia15/generic-application-Devops"
-    }
-        
+    }  
      }
    }
   } 
+       stage('call groovy file') {
+          steps{
+            script{
+               def rootDir = pwd()
+               def example = load "${rootDir}/Example.Groovy"
+                example.createGlobalEnvironmentVariables('Var1','DummyValue')
+            }
+          }
+       }
        
        stage('Checkout source code') {
           steps{
               echo PATH
+              echo env.Var1
               sh 'printenv'
               git url: "https://github.com/slathia15/mavenProject"
               echo env.GIT_UR
@@ -54,7 +63,7 @@ pipeline {
                            if (fileExists('build.sbt')) {
                            sh './Devops/scripts/sbt.sh'
                       } else if(fileExists('pom.xml') && !fileExists('build.sbt')){
-                           sh './scripts/mvn.sh'
+                           sh './Devops/scripts/mvn.sh'
                           }
                        else {
                            echo "The repo does not contain build.sbt or pom.xml"
