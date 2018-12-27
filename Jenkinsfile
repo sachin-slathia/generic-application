@@ -29,7 +29,6 @@ pipeline {
          }
        
               echo "$devOpsBranch"
-              git url: "https://github.com/slathia15/generic-application-Devops"
      }
    }
   } 
@@ -48,6 +47,7 @@ pipeline {
         stage("build") {
             steps {
                 script {
+                git url: "https://github.com/slathia15/generic-application-Devops"
                     if (fileExists('build.sbt')) {
                            sh './scripts/sbt.sh'
                       } else if(fileExists('pom.xml') && !fileExists('build.sbt')){
