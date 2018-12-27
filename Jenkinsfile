@@ -4,8 +4,8 @@ pipeline {
        stage('Checkout source code') {
        steps{    
         sh './scripts/env.sh'  
-        echo "${env.GIT_URL}"
-        git url: "${env.GIT_URL}",credentialsId: "${env.CREDENTIAL_ID}"
+        echo "${env.GIT_UR}"
+        git url: "${env.GIT_UR}",credentialsId: "${env.CREDENTIAL_ID}"
     }
     }   
         stage("build") {
