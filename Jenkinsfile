@@ -2,11 +2,8 @@ pipeline {
     agent any
     stages {
        stage('Checkout source code') {
-        environment {
-        // 'This value is exported to all commands in this stage'
-        l = sh 'source ./scripts/env.sh'
-         }
           steps{
+              sh 'source ./scripts/env.sh'
               sh 'printenv'
               echo "$env.GIT_UR"
                     
