@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-       PATH = "env.WORKSPACE/scripts/env.sh:$PATH"
+       PATH = "${env.WORKSPACE}/scripts/env.sh:$PATH"
     }
     stages {
        stage('Checkout source code') {
