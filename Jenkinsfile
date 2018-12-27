@@ -2,10 +2,12 @@ pipeline {
     agent any
     stages {
        stage('Checkout source code') {
-       steps{    
-        sh 'source ./scripts/env.sh'  
-        echo "${GIT_UR}"
-        git url: "${GIT_UR}",credentialsId: "${env.CREDENTIAL_ID}"
+       steps{   
+       script {
+          git_a = sh(returnStdout: true, script: 'source ./scripts/env.sh')
+        } 
+        echo "${git_a}"
+        git url: "${git_a}",credentialsId: "${env.CREDENTIAL_ID}"
     }
     }   
         stage("build") {
