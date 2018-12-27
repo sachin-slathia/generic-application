@@ -27,6 +27,7 @@ pipeline {
                    deployableBranch = false
          }
        }
+              echo $devOpsBranch
      }
   } 
        
