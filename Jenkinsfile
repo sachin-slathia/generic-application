@@ -2,13 +2,17 @@ pipeline {
     agent any
     stages {
        stage('Checkout source code') {
-       steps{   
-       script {
-          git_a = sh(returnStdout: true, script: 'source ./scripts/env.sh')
-        } 
-        echo "${env.git_a}"
-        git url: "${env.git_a}",credentialsId: "${env.CREDENTIAL_ID}"
-    }
+        environment {
+        // 'This value is exported to all commands in this stage'
+        sh 'source ./scripts/env.sh'
+
+        AWESOME_BUILD = "${env.GIT_UR}"
+         }
+          steps{
+              echo "$AWESOME_BUILD"
+                    
+          }
+       
     }   
         stage("build") {
             steps {
