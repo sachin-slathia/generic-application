@@ -13,9 +13,8 @@ pipeline {
               echo "$l"
                     
           }
-       
-    }   
-    }}
+         
+    }
     
           steps{
               echo "$AWESOME_BUILD"
@@ -39,4 +38,3 @@ pipeline {
             }
         }
     }
-}
