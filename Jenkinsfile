@@ -7,7 +7,7 @@ pipeline {
        stage('Checkout source code') {
           steps{
               echo PATH
-              sh 'env.sh'
+              sh './env.sh'
               echo env.GIT_UR
                     
           }
