@@ -9,6 +9,7 @@ pipeline {
          steps{
             echo "Which Devops branch to check in"
           script{
+               echo "INSIDE SCRIPT FUNCTION"
                def current_branch = env.BRANCH_NAME
                def devOpsBranch = "master"
                def deployableBranch = true
@@ -27,7 +28,7 @@ pipeline {
                    deployableBranch = false
          }
        
-              echo $devOpsBranch
+              echo "$devOpsBranch"
      }
      }
   } 
