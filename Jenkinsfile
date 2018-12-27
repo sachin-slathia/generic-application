@@ -4,10 +4,19 @@ pipeline {
        stage('Checkout source code') {
         environment {
         // 'This value is exported to all commands in this stage'
-        sh 'source ./scripts/env.sh'
+        l = sh 'source ./scripts/env.sh'
 
         AWESOME_BUILD = "${env.GIT_UR}"
          }
+          steps{
+              echo "$AWESOME_BUILD"
+              echo "$l"
+                    
+          }
+       
+    }   
+    }}
+    
           steps{
               echo "$AWESOME_BUILD"
                     
