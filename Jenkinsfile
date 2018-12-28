@@ -64,7 +64,7 @@ pipeline {
          {
            steps{
                script{
-                   if(isContainerized == true){
+                   if(isContainerized == "true"){
                        echo "Sachin"
                        sh './Devops/scripts/Containerized.sh'
                    }
