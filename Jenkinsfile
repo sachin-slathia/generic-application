@@ -65,7 +65,11 @@ pipeline {
            steps{
                script{
                    if(isContainerized == true){
+                       echo "Sachin"
                        sh './Devops/scripts/Containerized.sh'
+                   }
+                   else{
+                     echo "Not in Deployment"
                    }
                }
            } 
