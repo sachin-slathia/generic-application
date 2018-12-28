@@ -52,7 +52,7 @@ pipeline {
                 script {
                            if (fileExists('build.sbt')) {
                            sh './Devops/scripts/sbt.sh'
-                           archiveArtifacts artifacts: ‘target/scala-2.11/assignment_2.11-1.0-SNAPSHOT-sans-externalized.jar’
+                           archiveArtifacts artifacts: 'target/scala-2.11/assignment_2.11-1.0-SNAPSHOT-sans-externalized.jar'
                       } else if(fileExists('pom.xml') && !fileExists('build.sbt')){
                            sh './Devops/scripts/mvn.sh'
                           }
