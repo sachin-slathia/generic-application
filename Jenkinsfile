@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
        PATH = "${env.WORKSPACE}/scripts/env.sh:$PATH"
+       isContainerized = true
     }
 
     stages {
@@ -27,8 +28,6 @@ pipeline {
                    default:
                    deployableBranch = false
          }
-       
-              echo "$devOpsBranch"
                dir('Devops') {
                 git url: "https://github.com/slathia15/generic-application-Devops"
     }  
@@ -39,10 +38,8 @@ pipeline {
        
        stage('Checkout source code') {
           steps{
-              echo PATH
-              sh 'printenv'
+
               git url: "https://github.com/slathia15/generic-application"
-              echo env.GIT_UR
                     
           }
          
@@ -63,6 +60,17 @@ pipeline {
                 }
             }
         }
+        stage('Whether we want containerized Deployment or not')
+         {
+           steps{
+               script{
+                   if(isContainerized == true){
+                       sh './Devops/scripts/Containerized.sh'
+                   }
+               }
+           } 
+         }
+
         
     }
   }
