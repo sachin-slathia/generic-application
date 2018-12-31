@@ -62,10 +62,15 @@ pipeline {
         }
         stage('Whether we want containerized Deployment or not')
          {
+         withCredentials([string(credentialsId: '0f1a5526-8808-4048-82dc-05f1a913603d, variable: 'PW1')]) {
+         echo "My password is '${PW1}'!"
+}
            steps{
                script{
                    if(isContainerized == "true"){
                        echo "Sachin"
+                       code = load './Devops/groovy/build_docker_services.groovy'
+                       code.build("hub.docker.com","slathia15","PW1","master")
                        sh './Devops/scripts/Containerized.sh'
                    }
                    else{
