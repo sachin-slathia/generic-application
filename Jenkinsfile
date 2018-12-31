@@ -69,7 +69,7 @@ pipeline {
                        echo "Sachin"
                        def externalMethod = load("./Devops/groovy/build_docker_services.groovy")
                        echo "$externalMethod"
-                       echo devOpsBranch
+                       echo "$devOpsBranch"
                        externalMethod.build("hub.docker.com","slathia15","${PASSWORD}","${env.BRANCH_NAME}")
                    }
                    else{
