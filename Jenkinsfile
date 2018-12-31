@@ -68,7 +68,7 @@ pipeline {
                    if(isContainerized == "true"){
                        echo "Sachin"
                        def externalMethod = load("./Devops/groovy/build_docker_services.groovy")
-                       echo externalMethod
+                       echo $externalMethod
                        externalMethod.build("hub.docker.com","slathia15","${PASSWORD}","master")
                        sh './Devops/scripts/Containerized.sh'
                    }
