@@ -39,7 +39,7 @@ pipeline {
        stage('Checkout source code') {
           steps{
 
-              git url: "https://github.com/slathia15/mavenProject"
+              git url: "https://github.com/slathia15/generic-application"
                     
           }
          
