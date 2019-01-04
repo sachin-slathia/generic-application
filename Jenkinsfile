@@ -76,6 +76,7 @@ pipeline {
                    }
                    else{
                      echo "Not in Deployment"
+                     sh './Devops/scripts/ansible.sh'
                    }
                }
            } 
@@ -83,3 +84,4 @@ pipeline {
     }
   }
 }
+
