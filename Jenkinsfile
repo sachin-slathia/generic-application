@@ -62,9 +62,6 @@ pipeline {
         }
         stage('Whether we want containerized Deployment or not')
          {
-  	   when {
-                 branch 'Develop'
-               }
            steps{
               withCredentials([string(credentialsId: 'docker_login_password', variable: 'PASSWORD')]) {
                script{
