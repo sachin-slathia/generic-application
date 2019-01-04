@@ -22,7 +22,7 @@ libraryDependencies +="mysql" % "mysql-connector-java" % "5.1.35"
 
 
 
-/// Adds additional packages into Twirl
+//// Adds additional packages into Twirl
 //TwirlKeys.templateImports += "com.example.controllers._"
 
 // Adds additional packages into conf/routes
