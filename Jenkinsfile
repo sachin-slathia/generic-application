@@ -71,13 +71,17 @@ pipeline {
                        echo "$externalMethod"
                        externalMethod.build("hub.docker.com","slathia15","${PASSWORD}","master")
                    }
-                   else{
-                     echo "Not in Deployment"
-                     sh './Devops/scripts/ansible.sh'
-                   }
                }
            } 
          }
+    }
+    stage('Deploy a application'){
+      steps{
+         if(isContainerized != "true"){
+             echo "running ansible-playbook"
+             sh './Devops/scripts/ansible.sh'
+         }
+      }
     }
   }
 }
