@@ -77,6 +77,7 @@ pipeline {
     }
     stage('Deploy a application'){
       steps{
+        script{
          if(isContainerized != "true"){
              echo "running ansible-playbook"
              sh './Devops/scripts/ansible.sh'
@@ -84,5 +85,6 @@ pipeline {
       }
     }
   }
+}
 }
 
