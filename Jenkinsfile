@@ -29,7 +29,7 @@ pipeline {
                    deployableBranch = false
          }
                dir('Devops') {
-                git url: "https://github.com/slathia15/generic-application-Devops"
+                git url: "https://github.com/slathia15/generic-application-Devops",branch:"${current_branch}" 
     }  
      }
    }
