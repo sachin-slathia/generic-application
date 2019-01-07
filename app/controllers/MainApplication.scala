@@ -1,23 +1,23 @@
 package controllers
 
-import forms.{SignIn, SignUp}
+import forms.{ SignIn, SignUp }
 import javax.inject.Inject
-import models.{AssignmentDatabase, StoreInDatabase, UserRepo}
-import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents}
+import models.{ AssignmentDatabase, StoreInDatabase, UserRepo }
+import play.api.mvc.{ AbstractController, Action, AnyContent, ControllerComponents }
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
-class MainApplication @Inject()(controllerComponent: ControllerComponents,
-                                signUp: SignUp, signIn: SignIn, storeInDatabase: StoreInDatabase,
-                                assignmentDatabase: AssignmentDatabase)
+class MainApplication @Inject() (
+  controllerComponent: ControllerComponents,
+  signUp: SignUp, signIn: SignIn, storeInDatabase: StoreInDatabase,
+  assignmentDatabase: AssignmentDatabase)
 
   extends AbstractController(controllerComponent) {
 
+  def signInPage: Action[AnyContent] = Action { implicit request =>
 
-  def signInPage: Action[AnyContent] = Action{ implicit request =>
-
-   Ok(views.html.signIn())
+    Ok(views.html.signIn())
   }
 
   def viewProfile: Action[AnyContent] = Action.async { implicit request =>
@@ -25,7 +25,6 @@ class MainApplication @Inject()(controllerComponent: ControllerComponents,
     Future.successful(Ok(views.html.viewProfile()))
 
   }
-
 
   /*
     def viewProfile: Action[AnyContent] = Action.async { implicit request =>
@@ -52,14 +51,12 @@ class MainApplication @Inject()(controllerComponent: ControllerComponents,
     }
   */
 
-
   def viewAssignment: Action[AnyContent] = Action.async {
     implicit request =>
       assignmentDatabase.getAll().map {
         data =>
           Ok(views.html.viewAssignment(data))
       }
-
 
   }
 
@@ -79,7 +76,6 @@ class MainApplication @Inject()(controllerComponent: ControllerComponents,
 
   }
 
-
   def homePage: Action[AnyContent] = Action.async {
     implicit request =>
 
@@ -95,23 +91,24 @@ class MainApplication @Inject()(controllerComponent: ControllerComponents,
         formWithError => {
           Future.successful(Ok(views.html.register(formWithError)))
         }, {
-          data => {
+          data =>
+            {
 
-            storeInDatabase.get(data.userName).flatMap {
-              optionalUser =>
-                optionalUser.fold {
-                  val dbPlayLoad = UserRepo(0, data.firstName, data.middleName, data.lastName, data.userName,
-                    data.password.confirmPassword, data.phoneNumber, data.gender)
-                  storeInDatabase.store(dbPlayLoad).map {
-                    case _: Long => Ok(views.html.signIn())
-                    case _ => InternalServerError
+              storeInDatabase.get(data.userName).flatMap {
+                optionalUser =>
+                  optionalUser.fold {
+                    val dbPlayLoad = UserRepo(0, data.firstName, data.middleName, data.lastName, data.userName,
+                      data.password.confirmPassword, data.phoneNumber, data.gender)
+                    storeInDatabase.store(dbPlayLoad).map {
+                      case _: Long => Ok(views.html.signIn())
+                      case _ => InternalServerError
 
+                    }
+                  } {
+                    _ => Future.successful(Ok("User already exist"))
                   }
-                } {
-                  _ => Future.successful(Ok("User already exist"))
-                }
+              }
             }
-          }
         })
 
   }
@@ -135,12 +132,9 @@ class MainApplication @Inject()(controllerComponent: ControllerComponents,
               }")
           }
 
-
       }
 
-
   }
-
 
   def authenticate: Action[AnyContent] = Action.async {
     implicit request =>
@@ -154,20 +148,18 @@ class MainApplication @Inject()(controllerComponent: ControllerComponents,
               optionalUser.fold {
                 Future.successful(Ok("No user exist with user Name you have typed"))
               } {
-                user => {
-                  if (user.password == data.password) {
-                    Future.successful(Ok(views.html.homePage()))
+                user =>
+                  {
+                    if (user.password == data.password) {
+                      Future.successful(Ok(views.html.homePage()))
+                    } else {
+                      Ok("Password does not match")
+                      Future.successful(Redirect(routes.MainApplication.signInPage))
+                    }
                   }
-                  else {
-                       Ok("Password does not match")
-                    Future.successful(Redirect(routes.MainApplication.signInPage))
-                  }
-                }
               }
           }
-        }
-      )
+        })
   }
-
 
 }

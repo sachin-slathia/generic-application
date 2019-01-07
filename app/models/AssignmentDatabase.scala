@@ -1,7 +1,7 @@
 package models
 
 import javax.inject.Inject
-import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
+import play.api.db.slick.{ DatabaseConfigProvider, HasDatabaseConfigProvider }
 import slick.jdbc.JdbcProfile
 import slick.lifted.ProvenShape
 
@@ -9,8 +9,7 @@ import scala.concurrent.Future
 
 case class AssignmentRepo(id: Long, title: String, description: String)
 
-class AssignmentDatabase @Inject()(protected val dbConfigProvider: DatabaseConfigProvider) extends Impl1 with UserTable1 {
-
+class AssignmentDatabase @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends Impl1 with UserTable1 {
 
 }
 
@@ -21,7 +20,6 @@ trait Impl1 {
   import profile.api._
 
   def store(assignmentRepo: AssignmentRepo): Future[Long] = {
-
 
     db.run {
 
@@ -38,11 +36,9 @@ trait Impl1 {
   }
 }
 
-
 trait UserTable1 extends HasDatabaseConfigProvider[JdbcProfile] {
 
   import profile.api._
-
 
   val userProfileQuery: TableQuery[UserProfile] = TableQuery[UserProfile]
 
@@ -56,6 +52,5 @@ trait UserTable1 extends HasDatabaseConfigProvider[JdbcProfile] {
     def description: Rep[String] = column[String]("description")
 
   }
-
 
 }

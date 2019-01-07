@@ -1,8 +1,7 @@
 package forms
 
 import play.api.data.Form
-import play.api.data.Forms.{mapping, text}
-
+import play.api.data.Forms.{ mapping, text }
 
 case class userAuthentication(userName: String, password: String)
 
@@ -13,8 +12,6 @@ class SignIn {
     mapping(
       "user-name" -> text.verifying("Please enter a valid email", _.nonEmpty),
 
-      "password" -> text.verifying("Please enter a valid email", _.nonEmpty)
-    )(userAuthentication.apply)(userAuthentication.unapply))
-
+      "password" -> text.verifying("Please enter a valid email", _.nonEmpty))(userAuthentication.apply)(userAuthentication.unapply))
 
 }
