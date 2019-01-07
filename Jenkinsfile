@@ -84,7 +84,7 @@ pipeline {
              }
          else { 
             echo "running ansible-playbook Deploy"
-            sh './Deplovs/scripts/ansible-deploy.sh'
+            sh './Devops/scripts/ansible-deploy.sh'
          }
     }
   }
