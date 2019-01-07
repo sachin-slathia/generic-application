@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
        PATH = "${env.WORKSPACE}/scripts/env.sh:$PATH"
-       isContainerized = true
+       isContainerized = false
     }
 
     stages {
@@ -78,7 +78,7 @@ pipeline {
     stage('Deploy a application'){
       steps{
         script{
-         if(isContainerized != "true"){
+         if(isContainerized == "true"){
              echo "running ansible-playbook"
              sh './Devops/scripts/ansible.sh'
              }
