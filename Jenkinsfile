@@ -81,6 +81,9 @@ pipeline {
          if(isContainerized != "true"){
              echo "running ansible-playbook"
              sh './Devops/scripts/ansible.sh'
+         else { 
+            echo "running ansible-playbook Deploy"
+            sh './Deplovs/scripts/ansible-deploy.sh'
          }
       }
     }
