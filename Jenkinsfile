@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
        PATH = "${env.WORKSPACE}/scripts/env.sh:$PATH"
-       isContainerized = false
+       isContainerized = true
     }
 
     stages {
